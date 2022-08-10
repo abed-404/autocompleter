@@ -28,7 +28,7 @@ function select(element) {
 }
 const outputHtml = matches => {
     if (matches.length > 0) {
-        const html = matches.map(match => { return match = `<li>${match.name}(${match.code})</li>` }
+        const html = matches.map(match => { return match = `<li>${match.name}</li>` }
         ).join('');
         matchList.innerHTML = html;
         allListElements = document.querySelectorAll('li');
