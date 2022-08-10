@@ -2,6 +2,10 @@ const search = document.getElementById('search')
 const matchList = document.getElementById('results')
 
 function httpGetSuggestions(key) {
+    if (key.length === 0 ){
+        matchList.innerHTML = ""
+        return 
+    }
     fetch(`/search?q=${key}`).
         then((response) => check(response)).
         then((data) => outputHtml(data)).
@@ -14,12 +18,13 @@ function check(response) {
     return response.json();
 }
 function errHandler(err) {
-    matchList.innerHTML = "";
+    matchList.innerHTML = "No matches";
 }
 
 function select(element) {
     let selectUSerData = element.textContent;
     search.value = selectUSerData;
+    matchList.innerHTML = ""
 }
 const outputHtml = matches => {
     if (matches.length > 0) {

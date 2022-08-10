@@ -39,7 +39,7 @@ const handlePublic = (request, response, url) => {
 };
 
 const getSuggestions = (key, response) => {
-    const file = fs.readFile('./src/countries.json', (error, data) => {
+    fs.readFile('./src/countries.json', (error, data) => {
         if (error) {
             console.log(error);
             response.writeHead(500, { 'Content-Type': 'text/html' });
@@ -49,9 +49,8 @@ const getSuggestions = (key, response) => {
             let matches = countries.filter(country => {
                 const regex = new RegExp(`^${key}`, 'gi');
                 return country.name.match(regex) || country.code.match(regex);
-            });
-            
-            if (key.length === 0 || matches.length == 0) {
+            });        
+            if (matches.length == 0){
                 response.writeHead(404);
                 response.end()
             }
