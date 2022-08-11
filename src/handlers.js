@@ -48,9 +48,10 @@ const getSuggestions = (key, response) => {
             const countries = JSON.parse(data.toString());
             let matches = countries.filter(country => {
                 const regex = new RegExp(`^${key}`, 'gi');
-                return country.name.match(regex) || country.code.match(regex);
-            });        
-            if (matches.length == 0){
+                //return country.name.match(regex) || country.code.match(regex); search by name or code
+                return country.name.match(regex)
+            });
+            if (matches.length == 0) {
                 response.writeHead(404);
                 response.end()
             }
