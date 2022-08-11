@@ -2,9 +2,9 @@ const search = document.getElementById('search')
 const matchList = document.getElementById('results')
 
 function httpGetSuggestions(key) {
-    if (key.length === 0 ){
+    if (key.length === 0) {
         matchList.innerHTML = ""
-        return 
+        return
     }
     fetch(`/search?q=${key}`).
         then((response) => check(response)).
